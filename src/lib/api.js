@@ -33,7 +33,37 @@ export async function sleep(ms) {
  *  kom upp.
  */
 export async function searchLaunches(query) {
-  /* TODO útfæra */
+  const url = new URL('launch',API_URL);
+  url.searchParams.set('search', query);
+  url.searchParams.set('mode', 'list');
+
+  let response;
+  try {
+    response = await fetch(url); // response hefur text(), blob() (binary large object) og json() gildi
+  } catch (e) {
+    console.error('Villa kom upp við að sækja gögn');
+    return null;
+  }
+
+  if (!response.ok) {
+    console.error(
+      'Villa við að sækja gögn, ekki 200 staða',
+      response.status,
+      response.statusText
+    );
+    return null;
+  }
+
+  // try-catch er notað til að prufa hvort eitt virki of ef ekki þá keyra hitt
+  let json;
+  try {
+    json = await response.json();
+  } catch (e) {
+    console.error('Villa við að vinna úr JSON');
+    return null;
+  }
+
+  return json.results;
 }
 
 /**

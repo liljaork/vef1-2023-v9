@@ -1,6 +1,6 @@
 {
-    "editor.formatOnSave":true, //alltaf þegar ég vista skjal þá er code-formaterinn keyrður
-    "editor.codeActionsOnSave": { //Ef forritskóði er vistaður þá:
-        "source.fixAll.eslint": true //laga allar þær villur sem esLint (eða líka prettier?) getur lagað :)
+    "editor.formatOnSave":true, // alltaf þegar ég vista skjal þá er code-formaterinn keyrður
+    "editor.codeActionsOnSave": { // Ef forritskóði er vistaður þá:
+        "source.fixAll.eslint": true // laga allar þær villur sem esLint (eða líka prettier?) getur lagað :)
     }
 }

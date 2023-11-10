@@ -5,13 +5,13 @@
  * @returns {HTMLElement} Elementi með gefnum börnum
  */
 export function el(name, attributes = {}, ...children) {
-  const e = document.createElement(name);
+  const e = document.createElement(name); // nafn á elementi tekið og búið til element
 
-  for (const key of Object.keys(attributes)) {
+  for (const key of Object.keys(attributes)) { // object af attributum tekið inn og sett við elementið
     e.setAttribute(key, attributes[key]);
   }
 
-  for (const child of children) {
+  for (const child of children) { // tökum inn óskilgreindan fjölda af börnum
     if (typeof child === 'string' || typeof child === 'number') {
       e.appendChild(document.createTextNode(child.toString()));
     } else {
