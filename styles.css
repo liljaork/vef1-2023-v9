@@ -47,10 +47,12 @@ button {
 h1 {
   font-size: 2rem;
   margin-block-end: var(--spacing);
+  font-weight: 800;
 }
 
 h2 {
   font-size: 1.5rem;
+  font-weight: 700;
 }
 
 main {
@@ -64,3 +66,29 @@ main {
 }
 
 /* TODO nánari stílar */
+
+main {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  margin-left: var(--spacing);
+}
+
+body {
+  gap: var(--spacing);
+}
+
+.results {  
+  flex-direction: column;
+  gap: var(--spacing);
+  list-style: none;
+  padding-right: 20%;
+}
+
+.results li {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing);
+}

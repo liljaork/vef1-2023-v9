@@ -12,9 +12,10 @@ export function renderSearchForm(searchHandler, query = undefined) {
     'form', 
     {}, 
     el('input',{value: query ?? '', name: 'query'}), // setur inn nafn í search kassann
-    el('button', {}, 'Leyta')); // hnappur til að leita
+    el('button', {}, 'Leyta') // hnappur til að leita
+  );
 
-    form.addEventListener('submit', searchHandler);
+  form.addEventListener('submit', searchHandler);
 
   return form;
 }
@@ -22,7 +23,7 @@ export function renderSearchForm(searchHandler, query = undefined) {
 
 
 /**
- * Setur „loading state“ skilabað meðan gögn eru sótt.
+ * Setur „loading state“ skilaboð meðan gögn eru sótt.
  * @param {HTMLElement} parentElement Element sem á að birta skilbaoð í.
  * @param {Element | undefined} searchForm Leitarform sem á að gera óvirkt.
  */

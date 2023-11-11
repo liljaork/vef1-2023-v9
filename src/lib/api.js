@@ -54,7 +54,7 @@ export async function searchLaunches(query) {
     return null;
   }
 
-  // try-catch er notað til að prufa hvort eitt virki of ef ekki þá keyra hitt
+  // try-catch er notað til að prufa hvort eitt virki og ef ekki þá keyra hitt
   let json;
   try {
     json = await response.json();
