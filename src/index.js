@@ -1,4 +1,4 @@
-import { empty } from './lib/elements.js';
+// import { empty } from './lib/elements.js';
 import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
 
 /**
@@ -8,14 +8,12 @@ import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
  */
 async function onSearch(e) {
   e.preventDefault();
-  console.log('onSearch, e:', e);
 
   if (!e.target || !(e.target instanceof Element)) {
     return;
   }
 
   const { value } = e.target.querySelector('input') ?? {};
-  console.log('value:', value);
 
   if (!value) {
     return;
@@ -50,7 +48,7 @@ function route() {
 
 // Bregst við því þegar við notum vafra til að fara til baka eða áfram.
 window.onpopstate = () => {
-  // route(); // ?????????????
+  route();
 };
 
 // Athugum í byrjun hvað eigi að birta.

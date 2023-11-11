@@ -176,37 +176,6 @@ export function renderFrontpage(
 }
 
 /**
- * Sýna geimskot.
- * @param {HTMLElement} parentElement Element sem á að innihalda geimskot.
- * @param {string} id Auðkenni geimskots.
- */
-export async function renderDetails(parentElement, id) {
-  const container = el('main', {});
-  const backElement = el(
-    'div',
-    { class: 'back' },
-    el('a', { href: '/' }, 'Til baka'),
-  );
-
-  parentElement.appendChild(container);
-
-  /* Setja loading state og sækja gögn */
-  setLoading(parentElement);
-  const result = await getLaunch(id);
-  setNotLoading(parentElement);
-
-  // Tómt og villu state, við gerum ekki greinarmun á þessu tvennu, ef við
-  // myndum vilja gera það þyrftum við að skilgreina stöðu fyrir niðurstöðu
-  if (!result) {
-    parentElement.appendChild(el('p', {}, 'Ekkert geimskot fannst.'));
-    return;
-  }
-
-  /* Útfæra ef gögn */
-  parentElement.appendChild(createLaunch(result));
-}
-
-/**
  * Útbýr element fyrir öll gögn um bók. Birtir titil fyrir þau gögn sem eru til
  * staðar (ekki tóm fylki) og birtir þau.
  * @param {object} launch Gögn fyrir bók sem á að birta.
@@ -248,4 +217,37 @@ export function createLaunch(launch) {
   );
 
   return launchEl;
+}
+
+/**
+ * Sýna geimskot.
+ * @param {HTMLElement} parentElement Element sem á að innihalda geimskot.
+ * @param {string} id Auðkenni geimskots.
+ */
+export async function renderDetails(parentElement, id) {
+  const container = el('main', {});
+  /*
+  const backElement = el(
+    'div',
+    { class: 'back' },
+    el('a', { href: '/' }, 'Til baka'),
+  );
+  */
+
+  parentElement.appendChild(container);
+
+  /* Setja loading state og sækja gögn */
+  setLoading(parentElement);
+  const result = await getLaunch(id);
+  setNotLoading(parentElement);
+
+  // Tómt og villu state, við gerum ekki greinarmun á þessu tvennu, ef við
+  // myndum vilja gera það þyrftum við að skilgreina stöðu fyrir niðurstöðu
+  if (!result) {
+    parentElement.appendChild(el('p', {}, 'Ekkert geimskot fannst.'));
+    return;
+  }
+
+  /* Útfæra ef gögn */
+  parentElement.appendChild(createLaunch(result));
 }

@@ -50,15 +50,12 @@ export async function sleep(ms) {
  */
 export async function searchLaunches(query) {
   const url = new URL('launch', API_URL);
-  console.log('searchlaunches: url:', url);
   url.searchParams.set('search', query);
   url.searchParams.set('mode', 'list');
-  console.log('url:', url);
 
   let response;
   try {
     response = await fetch(url);
-    console.log('response úr fetch:', response);
   } catch (e) {
     console.error('Villa kom upp við að sækja gögn');
     return null;
@@ -76,7 +73,6 @@ export async function searchLaunches(query) {
   let json;
   try {
     json = await response.json();
-    console.log('json:', json);
   } catch (e) {
     console.error('Villa við að vinna úr JSON');
     return null;
@@ -91,12 +87,8 @@ export async function searchLaunches(query) {
  * @returns {Promise<LaunchDetail | null>} Geimskot.
  */
 export async function getLaunch(id) {
-  let result;
-  console.log('id:', id);
   const url = new URL(`launch/${id}`, API_URL);
-  console.log('url:', url);
-  result = await queryApi(url);
-  console.log('result:', result);
+  const result = await queryApi(url);
 
   if (!result) {
     return null;
