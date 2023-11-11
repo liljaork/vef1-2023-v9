@@ -14,7 +14,7 @@ export function el(name, attributes = {}, ...children) {
 
   for (const child of children) {
     // tökum inn óskilgreindan fjölda af börnum
-    if (typeof child === "string" || typeof child === "number") {
+    if (typeof child === 'string' || typeof child === 'number') {
       e.appendChild(document.createTextNode(child.toString()));
     } else {
       e.appendChild(child);

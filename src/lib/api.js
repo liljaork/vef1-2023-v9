@@ -31,7 +31,7 @@ async function queryApi(url) {
 
 /**
  * Skilar Promise sem bíður í gefnar millisekúndur.
- * Gott til að prófa loading state, en einnig hægt að nota `throttle` í 
+ * Gott til að prófa loading state, en einnig hægt að nota `throttle` í
  * DevTools.
  * @param {number} ms Tími til að sofa í millisekúndum.
  * @returns {Promise<void>}
@@ -68,7 +68,7 @@ export async function searchLaunches(query) {
     console.error(
       'Villa við að sækja gögn, ekki 200 staða',
       response.status,
-      response.statusText
+      response.statusText,
     );
     return null;
   }

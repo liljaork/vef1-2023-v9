@@ -9,9 +9,12 @@ import { el } from './elements.js';
  */
 export function renderSearchForm(searchHandler, query = undefined) {
   // const form = el('form', {}, el('input', { type: 'text', name: 'query', value: query ?? '' }), el('button', {}, 'Leita'));
-  const form = el('form', {}, 
-    el('input' , {value: query ?? '', placeholder: 'Leitarorð' }), 
-    el('button', {}, 'Leita'));
+  const form = el(
+    'form',
+    {},
+    el('input', { value: query ?? '', placeholder: 'Leitarorð' }),
+    el('button', {}, 'Leita'),
+  );
   form.addEventListener('submit', searchHandler);
   return form;
 }
@@ -69,8 +72,14 @@ function setNotLoading(parentElement, searchForm = undefined) {
  * @param {string} query Leitarstrengur.
  */
 function createSearchResults(results, query) {
-  const list = el('ul', {class : 'results'});
-  list.appendChild(el('h2', { class: 'results__title' }, `Leitarniðurstöður fyrir: "${query}"`));
+  const list = el('ul', { class: 'results' });
+  list.appendChild(
+    el(
+      'h2',
+      { class: 'results__title' },
+      `Leitarniðurstöður fyrir: "${query}"`,
+    ),
+  );
 
   if (!results) {
     const noResultElement = el('li', {}, `Villa við leit að ${query}`);
@@ -79,15 +88,30 @@ function createSearchResults(results, query) {
   }
 
   if (results.length === 0) {
-    const noResultElement = el('li', {}, `Engar niðurstöður fyrir leit að ${query}`);
+    const noResultElement = el(
+      'li',
+      {},
+      `Engar niðurstöður fyrir leit að ${query}`,
+    );
     list.appendChild(noResultElement);
     return list;
   }
 
   for (const result of results) {
-    const resultElement = el('li',{class: 'result'}, 
-      el('span', {class: 'name' }, el('a',{href: `/?id=${result.id}`}, result.name)),
-      el('span', {class: 'mission'}, el('h3',{},'Geimferð: '), result.mission),
+    const resultElement = el(
+      'li',
+      { class: 'result' },
+      el(
+        'span',
+        { class: 'name' },
+        el('a', { href: `/?id=${result.id}` }, result.name),
+      ),
+      el(
+        'span',
+        { class: 'mission' },
+        el('h3', {}, 'Geimferð: '),
+        result.mission,
+      ),
     );
     list.appendChild(resultElement);
   }
@@ -108,7 +132,7 @@ export async function searchAndRender(parentElement, searchForm, query) {
     console.warn('fann ekki <main> element');
     return;
   }
-  
+
   // Fjarlægja fyrri niðurstöður
   const resultsElement = mainElement.querySelector('.results');
   if (resultsElement) {
@@ -135,7 +159,11 @@ export function renderFrontpage(
   searchHandler,
   query = undefined,
 ) {
-  const heading = el('h1', { class: 'heading', 'data-foo' : 'bar'}, 'Geimskotaleitin 🚀');
+  const heading = el(
+    'h1',
+    { class: 'heading', 'data-foo': 'bar' },
+    'Geimskotaleitin 🚀',
+  );
   const searchForm = renderSearchForm(searchHandler, query);
   const container = el('main', {}, heading, searchForm);
   parentElement.appendChild(container);
@@ -176,7 +204,6 @@ export async function renderDetails(parentElement, id) {
 
   /* Útfæra ef gögn */
   parentElement.appendChild(createLaunch(result));
-
 }
 
 /**
@@ -186,19 +213,39 @@ export async function renderDetails(parentElement, id) {
  * @returns Element sem inniheldur öll gögn um bók.
  */
 export function createLaunch(launch) {
-  const launchEl = el('div', { class: 'launch-site' }, el('h1', { class: 'launch-title' }, launch.name));
-  launchEl.appendChild(el('p', { class: 'window-start' }, `Gluggi opnast: ${launch.window_start}`));
-  launchEl.appendChild(el('p', { class: 'window-end' }, `Gluggi lokast: ${launch.window_end}`));
-  launchEl.appendChild(el('h2', { class: 'status' }, `Staða: ${launch.status_name}`));
-  launchEl.appendChild(el('p', { class: 'status-description' }, launch.status_description));
-  launchEl.appendChild(el('h2', { class: 'mission-name' }, `Geimferð: ${launch.mission_name}`));
-  launchEl.appendChild(el('p', { class: 'mission-description' }, launch.mission_description));
+  const launchEl = el(
+    'div',
+    { class: 'launch-site' },
+    el('h1', { class: 'launch-title' }, launch.name),
+  );
+  launchEl.appendChild(
+    el('p', { class: 'window-start' }, `Gluggi opnast: ${launch.window_start}`),
+  );
+  launchEl.appendChild(
+    el('p', { class: 'window-end' }, `Gluggi lokast: ${launch.window_end}`),
+  );
+  launchEl.appendChild(
+    el('h2', { class: 'status' }, `Staða: ${launch.status_name}`),
+  );
+  launchEl.appendChild(
+    el('p', { class: 'status-description' }, launch.status_description),
+  );
+  launchEl.appendChild(
+    el('h2', { class: 'mission-name' }, `Geimferð: ${launch.mission_name}`),
+  );
+  launchEl.appendChild(
+    el('p', { class: 'mission-description' }, launch.mission_description),
+  );
 
   if (launch.image) {
-    launchEl.appendChild(el('img', { class: 'launch-image', src: launch.image }));
+    launchEl.appendChild(
+      el('img', { class: 'launch-image', src: launch.image }),
+    );
   }
 
-  launchEl.appendChild(el('p', { class: 'go-back' }, el('a', { href: '/' }, 'Til baka')));
+  launchEl.appendChild(
+    el('p', { class: 'go-back' }, el('a', { href: '/' }, 'Til baka')),
+  );
 
   return launchEl;
 }
