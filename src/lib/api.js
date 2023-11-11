@@ -11,11 +11,11 @@
  */
 
 /** Grunnslóð á API (DEV útgáfa) */
-const API_URL = 'https://lldev.thespacedevs.com/2.2.0/';
+const API_URL = "https://lldev.thespacedevs.com/2.2.0/";
 
 /**
  * Skilar Promise sem bíður í gefnar millisekúndur.
- * Gott til að prófa loading state, en einnig hægt að nota `throttle` í 
+ * Gott til að prófa loading state, en einnig hægt að nota `throttle` í
  * DevTools.
  * @param {number} ms Tími til að sofa í millisekúndum.
  * @returns {Promise<void>}
@@ -33,23 +33,23 @@ export async function sleep(ms) {
  *  kom upp.
  */
 export async function searchLaunches(query) {
-  const url = new URL('launch',API_URL);
-  url.searchParams.set('search', query);
-  url.searchParams.set('mode', 'list');
+  const url = new URL("launch", API_URL);
+  url.searchParams.set("search", query);
+  url.searchParams.set("mode", "list");
 
   let response;
   try {
     response = await fetch(url); // response hefur text(), blob() (binary large object) og json() gildi
   } catch (e) {
-    console.error('Villa kom upp við að sækja gögn');
+    console.error("Villa kom upp við að sækja gögn");
     return null;
   }
 
   if (!response.ok) {
     console.error(
-      'Villa við að sækja gögn, ekki 200 staða',
+      "Villa við að sækja gögn, ekki 200 staða",
       response.status,
-      response.statusText
+      response.statusText,
     );
     return null;
   }
@@ -59,7 +59,7 @@ export async function searchLaunches(query) {
   try {
     json = await response.json();
   } catch (e) {
-    console.error('Villa við að vinna úr JSON');
+    console.error("Villa við að vinna úr JSON");
     return null;
   }
 
