@@ -95,6 +95,7 @@ export async function getLaunch(id) {
   }
 
   return {
+    // @ts-ignore
     id: result.key,
     name: result.name ?? '',
     window_start: result.window_start ?? '',
